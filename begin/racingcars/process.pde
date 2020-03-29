@@ -120,6 +120,9 @@ if(mouseY >= SWTM && mouseY <= SWTM + SW_TO2 && mouseX >= TFT_W && mouseX <= TFT
   if(mouseY >= screen.width-10 && mouseY <= screen.width -10 + TFT_W2){
     return 4;
   }
+  if(mouseY >= screen.width -10 + TFT_W2 && mouseY <= screen.width-10 + TFT_W2 +TT_W2 && health <= 1){
+    return 2;
+  }
   //down
   if(mouseY >= screen.width-10 + TFT_W2 +TT_W2 && mouseY <= screen.width -10 + TFT_W2 + TT_W2 + TFT_W2){
     return 5;
@@ -170,7 +173,7 @@ draw = function() {
     text("YOU LOST",screen.width/9,screen.height/3);
     textSize(20);
     text("Click middle btn to replay",screen.width/6,screen.height/2.8);
-    if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
+    if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && mouseY >= screen.width -10 + TFT_W2 && mouseY <= screen.width-10 + TFT_W2 +TT_W2){
     start = 1;
     virusKT = 100;
     virusK = 0;
@@ -192,7 +195,7 @@ draw = function() {
     text(health,screen.width/2.55,screen.height/2.8);
     text("live/lives left",screen.width/2.2,screen.height/2.8);
     text("Try to get it up to 20,click middle btn to replay",screen.width/15,screen.height/2.6);
-      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
+      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && mouseY >= screen.width -10 + TFT_W2 && mouseY <= screen.width-10 + TFT_W2 +TT_W2){
       start = 1;
       virusKT = 100;
       virusK = 0;
@@ -213,7 +216,7 @@ draw = function() {
     textSize(17)
     text("Congratuation you still have maxed health",screen.width/20,screen.height/2.6);
     text("click middle button to replay",screen.width/20,screen.height/2.5);
-      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
+      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && mouseY >= screen.width -10 + TFT_W2 && mouseY <= screen.width-10 + TFT_W2 +TT_W2){
       start = 1;
       virusKT = 100;
       virusK = 0;
