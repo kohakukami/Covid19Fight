@@ -28,6 +28,21 @@ var SWTHM = screen.width -20;
 var PC = SWTHM / 2 - screen.width/8
 var health = 20;
 //images virus
+var SWTM = screen.width -10;
+var SW_TO = screen.width - 20;
+var FT_W = SW_TO/10 * 4;
+var TT_W = SW_TO/10 * 3;
+var TFT_W = SW_TO/10 * 3.5;
+var ST_W = SW_TO/10 * 7;
+var SW_TO2 = screen.height - screen.width - 80;
+var FT_W2 = SW_TO2/10 * 4;
+var TT_W2 = SW_TO2/10 * 3;
+var TFT_W2 = SW_TO2/10 * 3.5;
+var ST_W2 = SW_TO2/10 * 7;
+var DTM = screen.width + FT_W2 -29;
+var DFM = DTM + TT_W2;
+var MD = 0;
+var HT = 0;
 var virus = loadImage("../virus.png")
 //functions
 //draw Background
@@ -130,6 +145,14 @@ if(mouseY >= SWTM && mouseY <= SWTM + SW_TO2 && mouseX >= TFT_W && mouseX <= TFT
       start = 0;
     }
   }
+  Drawstuff = function(){
+  textSize(20);
+  text(virusK,PC/5,screen.width + PC/4);
+  text(virusKT,PC/2,screen.width + PC/4);
+  text("|",PC/2.4,screen.width + PC/4.1)
+  text("Covid-19 fight",PC*1.75,screen.width + PC/4);
+  text("Kohakukm",PC*2,screen.width + PC * 2.7);
+  }
 draw = function() {
   //repeat code
   //call functions
@@ -140,13 +163,14 @@ draw = function() {
   CheckP();
   DrawPoint(health);
   Drawbari(CheckP());
+  Drawstuff();
   if(health == 0){
     fill(200,0,0);
     textSize(50);
     text("YOU LOST",screen.width/9,screen.height/3);
     textSize(20);
-    text("Click to replay",screen.width/6,screen.height/2.8);
-    if(mouseX >= 0){
+    text("Click middle btn to replay",screen.width/6,screen.height/2.8);
+    if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
     start = 1;
     virusKT = 100;
     virusK = 0;
@@ -167,8 +191,8 @@ draw = function() {
     text("You have",screen.width/6,screen.height/2.8);
     text(health,screen.width/2.55,screen.height/2.8);
     text("live/lives left",screen.width/2.2,screen.height/2.8);
-    text("Try to get it up to 20,click to replay",screen.width/15,screen.height/2.6);
-      if(mouseX >= 0){
+    text("Try to get it up to 20,click middle btn to replay",screen.width/15,screen.height/2.6);
+      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
       start = 1;
       virusKT = 100;
       virusK = 0;
@@ -188,8 +212,8 @@ draw = function() {
     text("live/lives left",screen.width/2.2,screen.height/2.8);
     textSize(17)
     text("Congratuation you still have maxed health",screen.width/20,screen.height/2.6);
-    text("click to replay",screen.width/20,screen.height/2.5);
-      if(mouseX >= 0){
+    text("click middle button to replay",screen.width/20,screen.height/2.5);
+      if(mouseX >= TFT_W && mouseX <= TFT_W + TT_W && health <= 1){
       start = 1;
       virusKT = 100;
       virusK = 0;
@@ -246,7 +270,7 @@ draw = function() {
   }
   //3
     if(CheckP() == 3){
-    if(Vx2 <= PC*1.7 + screen.width/15){
+    if(Vx2 <= PC*1.7 + screen.width/10){
       Vx2 = random(screen.width, screen.width + 200);
       virusK ++;
   }}
@@ -262,9 +286,5 @@ draw = function() {
       Vy4 = random(screen.width, screen.width + 200);
       virusK ++;
   }}
-  textSize(20);
-  text(virusK,PC/5,screen.width + PC/4);
-  text(virusKT,PC/2,screen.width + PC/4);
-  text("|",PC/2.4,screen.width + PC/4.1)
   }
 };
