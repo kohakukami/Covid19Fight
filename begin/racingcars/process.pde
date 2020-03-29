@@ -116,32 +116,18 @@ if(mouseY >= SWTM && mouseY <= SWTM + SW_TO2 && mouseX >= TFT_W && mouseX <= TFT
     text(P,PC*1.13,PC*1.45)
   }
   DrawVirus = function() {
-    image(virus,Vx,Vy,PC/2,PC/2);
-    image(virus,Vx2,Vy2,PC/2,PC/2);
-    image(virus,Vx3,Vy3,PC/2,PC/2);
-    image(virus,Vx4,Vy4,PC/2,PC/2);
+    image(virus,Vx,Vy,PC/4,PC/4);
+    image(virus,Vx2,Vy2,PC/4,PC/4);
+    image(virus,Vx3,Vy3,PC/4,PC/4);
+    image(virus,Vx4,Vy4,PC/4,PC/4);
   }
   GOver = function(sts){
     start = 0;
     if(sts == "win"){
       start = 0;
-      var virusKT = 50;
-      var virusK = 0;
-      var N = 0;
-      var Vx = -300,Vy=screen.width/2.5;
-      var Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
-      var Vx3 = screen.width/2 - 40,Vy3=-500;
-      var Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
     }
     if(sts == "lose"){
       start = 0;
-      var virusKT = 50;
-      var virusK = 0;
-      var N = 0;
-      var Vx = -300,Vy=screen.width/2.5;
-      var Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
-      var Vx3 = screen.width/2 - 40,Vy3=-500;
-      var Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
     }
   }
 draw = function() {
@@ -158,9 +144,11 @@ draw = function() {
     fill(200,0,0);
     textSize(50);
     text("YOU LOST",screen.width/9,screen.height/3);
+    textSize(20);
+    text("Click to replay",screen.width/6,screen.height/2.8);
   }
   if(virusKT <= virusK){
-    if(health < 12){
+    if(health < 20){
     fill(200,0,0);
     textSize(50);
     text("YOU WIN",screen.width/6,screen.height/3);
@@ -168,7 +156,17 @@ draw = function() {
     text("You have",screen.width/6,screen.height/2.8);
     text(health,screen.width/2.55,screen.height/2.8);
     text("live/lives left",screen.width/2.2,screen.height/2.8);
-    text("Try to get it up to 20",screen.width/4.5,screen.height/2.6);
+    text("Try to get it up to 20,click to replay",screen.width/15,screen.height/2.6);
+      if(mouseX >= 0){
+      start = 1;
+      virusKT = 100;
+      virusK = 0;
+      N = 0;
+      Vx = -300,Vy=screen.width/2.5;
+      Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
+      Vx3 = screen.width/2 - 40,Vy3=-500;
+      Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
+      }
     }else{
     fill(200,0,0);
     textSize(50);
@@ -179,20 +177,30 @@ draw = function() {
     text("live/lives left",screen.width/2.2,screen.height/2.8);
     textSize(17)
     text("Congratuation you still have maxed health",screen.width/20,screen.height/2.6);
-    }
+    text("click to replay",screen.width/20,screen.height/2.5);
+      if(mouseX >= 0){
+      start = 1;
+      virusKT = 100;
+      virusK = 0;
+      N = 0;
+      Vx = -300,Vy=screen.width/2.5;
+      Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
+      Vx3 = screen.width/2 - 40,Vy3=-500;
+      Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
+      }}
   }
   //make virus move
   if(start == 1){
   if(virusK >= virusKT){
     GOver("win");
   }
-    Vx += random(0.7,1.5);
-    Vx2 -= random(0.7,1.5);
-    Vy3 += random(0.7,1.5);
-    Vy4 -= random(0.7,1.5);
-    if(Vx >= PC - screen.width/5){health --;Vx = random(-265,-65);}
+    Vx += random(1.5,2.2);
+    Vx2 -= random(1.5,2.2);
+    Vy3 += random(1.5,2.2);
+    Vy4 -= random(1.5,2.2);
+    if(Vx >= PC - screen.width/15){health --;Vx = random(-265,-65);}
     if(Vx2 <= PC + screen.width / 5){health --;Vx2 = random(screen.width, screen.width + 200);}
-    if( Vy3 >= PC - screen.width/5){health --;Vy3 = random(-265,-65);}
+    if( Vy3 >= PC - screen.width/15){health --;Vy3 = random(-265,-65);}
     if( Vy4 <= PC + screen.width /5){health --;Vy4 = random(screen.width,screen.width + 200);}
   //check for game over
   if (health <= 0){
@@ -201,38 +209,38 @@ draw = function() {
   //barrier
   //1
   if(CheckP() == 1){
-    if(Vx >= PC/1.7 - screen.width/7){
+    if(Vx >= PC/1.7 - screen.width/15){
       Vx = random(-165,-65);
       virusK ++;
   }}
   //2
   if(CheckP() == 2){
-    if(Vx >= PC/1.7 - screen.width/7){
+    if(Vx >= PC/1.7 - screen.width/15){
       Vx = random(-165,-65);
       virusK ++;
   }
-  if(Vx2 <= PC*1.7 + screen.width/7){
+  if(Vx2 <= PC*1.7 + screen.width/15){
       Vx2 = random(screen.width, screen.width + 200);
       virusK ++;
       }
-  if(Vy3 >= PC/1.7 - screen.width/7){
+  if(Vy3 >= PC/1.7 - screen.width/15){
       Vy3 = random(-165,-65);
       virusK ++;
   }
-    if(Vy4 <= PC*1.7 + screen.width/7){
+    if(Vy4 <= PC*1.7 + screen.width/15){
       Vy4 = random(screen.width, screen.width + 200);
       virusK ++;
   }
   }
   //3
     if(CheckP() == 3){
-    if(Vx2 <= PC*1.7 + screen.width/7){
+    if(Vx2 <= PC*1.7 + screen.width/15){
       Vx2 = random(screen.width, screen.width + 200);
       virusK ++;
   }}
   //4
     if(CheckP() == 4){
-    if(Vy3 >= PC/1.7 - screen.width/7){
+    if(Vy3 >= PC/1.7 - screen.width/15){
       Vy3 = random(-165,-65);
       virusK ++;
   }}
@@ -243,8 +251,8 @@ draw = function() {
       virusK ++;
   }}
   textSize(20);
-  text(virusK,PC/5,screen.width + PC/1.4);
-  text(virusKT,PC/2,screen.width + PC/1.4);
-  text("|",PC/2.4,screen.width + PC/1.5)
+  text(virusK,PC/5,screen.width + PC/4);
+  text(virusKT,PC/2,screen.width + PC/4);
+  text("|",PC/2.4,screen.width + PC/4.1)
   }
 };
