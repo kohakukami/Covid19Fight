@@ -140,12 +140,23 @@ draw = function() {
   CheckP();
   DrawPoint(health);
   Drawbari(CheckP());
-  if(health <= 0){
+  if(health == 0){
     fill(200,0,0);
     textSize(50);
     text("YOU LOST",screen.width/9,screen.height/3);
     textSize(20);
     text("Click to replay",screen.width/6,screen.height/2.8);
+    if(mouseX >= 0){
+    start = 1;
+    virusKT = 100;
+    virusK = 0;
+    N = 0;
+    Vx = -300,Vy=screen.width/2.5;
+    Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
+    Vx3 = screen.width/2 - 40,Vy3=-500;
+    Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
+    health = 20;
+    }
   }
   if(virusKT <= virusK){
     if(health < 20){
@@ -166,8 +177,8 @@ draw = function() {
       Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
       Vx3 = screen.width/2 - 40,Vy3=-500;
       Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
-      }
-    }else{
+      health = 20;
+      }}else{
     fill(200,0,0);
     textSize(50);
     text("YOU WIN",screen.width/6,screen.height/3);
@@ -187,6 +198,7 @@ draw = function() {
       Vx2 = screen.width+ 300,Vy2=screen.width/2.5;
       Vx3 = screen.width/2 - 40,Vy3=-500;
       Vx4 = screen.width/2 - 40,Vy4=screen.width + 200;
+      health = 20;
       }}
   }
   //make virus move
